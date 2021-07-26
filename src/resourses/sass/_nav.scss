@@ -1,0 +1,172 @@
+@keyframes navMove {
+    from {
+        top: -100px;
+    }
+    to {
+        top: 0px;
+    }
+}
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 99;
+    animation: navMove .5s ease-out;
+}
+
+.nav {
+    background-color: white;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    &__left {
+        width: 50%;
+        &--search {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            &_input {
+                input {
+                    padding: 0 1rem;
+                    height: 4rem;
+                    width: 30rem;
+                    border: none;
+                    outline: none;
+                    background-color: #f5f5f5;
+                    border-radius: 4px 0 0 4px;
+                }
+            }
+            &_btn {
+                .btn-search {
+                    font-size: 1.6rem;
+                    height: 4rem;
+                    width: 4rem;
+                    border-radius: 0px 4px 4px 0;
+                }
+            }
+        }
+    }
+    &__right {
+        width: 50%;
+        &--wrapper {
+            justify-content: flex-end;
+            align-items: center;
+            display: flex;
+            &_bell {
+                position: relative;
+                padding: 0 1rem;
+                margin-right: 2rem;
+                font-size: 2rem;
+                cursor: pointer;
+                i {
+                    color: #d1d3e2;
+                }
+                span {
+                    padding: 1px 2px;
+                    font-size: 1.2rem;
+                    position: absolute;
+                    background-color: #e74a3b;
+                    color: white;
+                    top: -10px;
+                    z-index: 10;
+                }
+                &:hover i {
+                    color: #858796;
+                }
+            }
+            &_envelope {
+                position: relative;
+                padding: 0 1rem;
+                margin-right: 3rem;
+                font-size: 2rem;
+                cursor: pointer;
+                i {
+                    color: #d1d3e2;
+                }
+                span {
+                    padding: 1px 2px;
+                    font-size: 1.2rem;
+                    position: absolute;
+                    background-color: #e74a3b;
+                    color: white;
+                    top: -10px;
+                    z-index: 10;
+                }
+                &:hover i {
+                    color: #858796;
+                }
+            }
+            &_block {
+                content: "";
+                background-color: #d1d3e2;
+                height: 3rem;
+                width: 1px;
+            }
+            &_account {
+                position: relative;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                margin-left: 4rem;
+                cursor: pointer;
+                &:hover .dropdown__menu {
+                    display: block;
+                    // opacity: 1;
+                    // top: 45px;
+                    // z-index: 10;
+                }
+                &--name {
+                    color: #858796!important;
+                    margin-right: 1rem;
+                    font-size: 1.2rem;
+                }
+                &--avatar {
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                    }
+                }
+                .dropdown__menu {
+                    display: none;
+                    position: absolute;
+                    background-color: white;
+                    top: 40px;
+                    z-index: 10;
+                    // opacity: 0.2;
+                    // top: 0px;
+                    // z-index: -1;
+                    padding: 5px 0;
+                    font-size: 1.4rem;
+                    width: 160px;
+                    border-radius: 10px;
+                    transition: all ease-out 0.5s;
+                    .dropdown-divider {
+                        content: "";
+                        background-color: #d1d3e2;
+                        height: 1px;
+                        width: 100%;
+                    }
+                    .drop--item {
+                        padding: 1rem 2rem;
+                        display: block;
+                        text-decoration: none;
+                        color: #3a3b45;
+                        i {
+                            font-size: 1.6rem;
+                            margin-right: 1rem;
+                            color: #d1d3e2;
+                        }
+                        &:hover {
+                            color: white;
+                            background-color: #224abe;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

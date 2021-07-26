@@ -1,0 +1,82 @@
+.btn--primary {
+    background-color: #4e73df;
+    border: none;
+    color: #fff;
+    &:hover {
+        cursor: pointer;
+        background-color: #2e59d9;
+    }
+}
+
+.btn--secondary {
+    background-color: #858796;
+    border: none;
+    color: #fff;
+    &:hover {
+        cursor: pointer;
+        background-color: #6a6c79;
+    }
+}
+
+.btn-small {
+    font-size: 1.6rem;
+    padding: 1rem 2rem;
+    margin-right: 1rem;
+}
+
+.btn-previous {
+    border-radius: 5px 0 0 5px;
+}
+
+.btn-next {
+    border-radius: 0 5px 5px 0;
+}
+
+.btn--del {
+    width: 50%;
+    font-size: 1.8rem;
+    padding: 5px 10px;
+    background-color: rgb(236, 65, 53);
+    cursor: pointer;
+    color: white;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #e4e2e2;
+    &:hover {
+        background-color: rgb(241, 79, 67);
+    }
+}
+
+.btn--close {
+    border: 1px solid #e4e2e2;
+    width: 50%;
+    font-size: 1.8rem;
+    padding: 5px 10px;
+    background-color: white;
+    cursor: pointer;
+    color: rgb(236, 65, 53);
+    outline: none;
+    border-radius: 5px;
+    &:hover {
+        background-color: rgb(238, 230, 229);
+    }
+}
+
+.bg--black {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba($color: #000000, $alpha: .5);
+}
+
+.no_result {
+    color: #6a6c79;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}

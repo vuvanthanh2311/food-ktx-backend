@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar__brand">
+            <div class="sidebar__brand--icon">
+                <i class="fas fa-utensils-alt"></i>
+            </div>
+            <div class="sidebar__brand--text">
+               food admin
+            </div>
+        </div>
+        <div class="sidebar__divider"></div>
+        <div class="sidebar__heading">
+                Sản Phẩm
+        </div>
+        
+        <div class="sidebar__item ">
+                <a href="/admin/add-product" class="sidebar__item--link">
+                    <i class="fab fa-slack"></i>
+                    <span>Thêm mới món ăn</span>
+                </a>
+        </div>
+         <div class="sidebar__item ">
+                <a href="/admin/list-product" class="sidebar__item--link">
+                    <i class="fab fa-slack"></i>
+                    <span>Danh sách món ăn</span>
+                </a>
+        </div>
+        <div class="sidebar__divider"></div>
+        <div class="sidebar__heading">
+                Người dùng
+        </div>
+        
+        <div class="sidebar__item ">
+                <a href="/admin/list-user" class="sidebar__item--link">
+                    <i class="fab fa-slack"></i>
+                    <span>Tài khoản người dùng</span>
+                </a>
+        </div>
+        <div class="sidebar__divider"></div>
+        <div class="sidebar__heading">
+                Cửa hàng
+        </div>
+        
+        <div class="sidebar__item ">
+                <a href="/admin/add-shop" class="sidebar__item--link">
+                    <i class="fab fa-slack"></i>
+                    <span>Thêm Cửa hàng</span>
+                </a>
+        </div>
+        <div class="sidebar__item ">
+                <a href="/admin/list-shop" class="sidebar__item--link">
+                    <i class="fab fa-slack"></i>
+                    <span>Danh sách Cửa hàng</span>
+                </a>
+        </div>
+        {{!-- <div class="sidebar__wrapper">
+            <div class="sidebar__wrapper--heading">
+                Sản Phẩm
+            </div>
+            <div class="sidebar__wrapper--item ">
+                <a href="#" class="sidebar__wrapper--item_link link--product">
+                    <i class="fab fa-slack"></i>
+                    <span>Sản Phẩm</span>
+                </a>
+                <div class="dropdown dropdown--product">
+                    <h6 class="dropdown--header">custom sản phẩm:</h6>
+                    <a href="/admin/add-product" class="dropdown--item">
+                        <span> Thêm mới món ăn</span>
+                    </a>
+                    <a href="/admin/list-product" class="dropdown--item">
+                        <span>Danh sách món ăn</span>
+                    </a>
+                </div>
+            </div>
+            <div class="sidebar__wrapper--item">
+                <a href="#" class="sidebar__wrapper--item_link">
+                    <i class="fab fa-slack"></i>
+                    <span>Tài khoản người dùng</span>
+                </a>
+            </div>
+            <div class="sidebar__wrapper--item">
+                <a href="#" class="sidebar__wrapper--item_link">
+                    <i class="fab fa-slack"></i>
+                    <span>Cửa hàng</span>
+                </a>
+            </div>
+        </div> --}}
+        {{!-- <div class="sidebar__divider"></div>
+         <div class="sidebar__heading">
+                Page
+        </div>
+        <div class="sidebar__item ">
+            <a href="/admin/login" class="sidebar__item--link">
+                <i class="fab fa-slack"></i>
+                <span>Login</span>
+            </a>
+        </div>
+        <div class="sidebar__item ">
+            <a href="/admin/register" class="sidebar__item--link">
+                <i class="fab fa-slack"></i>
+                <span>Register</span>
+            </a>
+        </div> --}}
+    </div>
+
+</body>
+<script> 
+$(document).ready(function(){
+    // click dropdown product
+    $(".link--product").click(function(){
+        $(".dropdown--product").toggleClass("dropdown--active");
+    })  
+});
+</script>
+</html>

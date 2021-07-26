@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="addProduct">
+        <div class="addProduct__heading">
+            <h1>Thêm cửa hàng mới</h1>
+        </div>
+        <div class="addProduct__form">
+            <form class="form__addProduct" action="/admin/add-shop" enctype="multipart/form-data" method="POST">
+                <div class="form__group">
+                    <label for="name">Tên cửa hàng</label>
+                    <input type="text" placeholder="Tên cửa hàng" name="name" id="name">
+                </div>
+                <div class="form__group">
+                    <label for="phone">phone number</label>
+                    <input type="number" placeholder="0123456789" name="phone" id="phone">
+                </div>
+                <div class="form__group">
+                    <label>Khoảng thời gian mở cửa</label>
+                    <div class="form__group--price">
+                        <input type="text" placeholder="Từ" name="timeOpen" id="timeOpen">
+                        <input type="text" placeholder="Đến" name="timeClose" id="timeClose">
+                    </div>
+                    
+                </div>
+                <div class="form__group">
+                    <label for="zone">Khu vực</label>
+                    <input type="text" placeholder="khuA, khuB" name="zone" id="zone">
+                </div>
+                <div class="form__group">
+                    <label for="type">Loại cửa hàng</label>
+                    <input type="text" placeholder="store, coffee" name="type" id="type">
+                </div>
+                <div class="form__group">
+                    <label for="description">Mô tả</label>
+                    <textarea type="text" placeholder="Mô tả của hàng" name="description" id="description" rows="4" cols="50"></textarea>
+                </div>
+                <div class="form__group">
+                    <label for="thumbnails">Hình ảnh</label>
+                     <input name="thumbnails" type="file" accept=".png,.jpg" multiple required>
+                </div>  
+                <div class="form__group">
+                    <label for="address">Address</label>
+                    <textarea type="text" placeholder="chợ ktx khu a, tp.Thủ Đức ,tp.HCM" name="address" id="address" rows="4" cols="50"></textarea>
+                </div>
+            </form>
+             <button  class="btn--primary btn-small btn-submit">ADD</button>
+            <button class="btn--secondary btn-small btn-reset">Reset</button>
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function(){
+        $(".btn-submit").click(function(){
+            $(".form__addProduct").submit();
+        })
+    })
+</script>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="listProduct">
+        <div class="listProduct__heading">
+            <h1>Quản lý tài khoản người dùng</h1>
+        </div>
+        <div class="listProduct__content">
+            <div class="listProduct__content--heading">
+                <h6>Danh sách người dùng</h6>
+            </div>
+            <div class="listProduct__content--filter">
+                <div class="dataTables__length">
+                    <label>
+                        Show
+                        <select name="dataTable_length">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        entries
+                    </label>
+                </div>
+                <div class="searchTable">
+                    <label >
+                        <input type="text" name="searchP" id="searchP" placeholder="name">
+                    </label>
+                    <button class="btn--primary searchTable--search" id="btnSearch" >Search</button>
+                </div>
+            </div>
+            <div class="listProduct__content--table">
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fullname</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        
+                        <th>Action</th>
+                    </tr>
+                    {{#each users}}
+                    <tr>
+                        
+                        <td>{{this._id}}</td>
+                        <td>{{this.fullname}}</td>
+                        <td>{{this.phone_number}}</td>
+                        <td>{{this.email}}</td>
+    
+                        <td>
+                            <a href="/admin/update-shop/{{this._id}}"><button class="btn-edit" ><i class="fas fa-edit"></i></button></a> 
+                            <button id="{{this._id}}" class="btn-del Cbtndel" ><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </table>
+                <div class="row">
+                    <div class="database_info">
+                        Showing 1 to 10 of {{shops.length}} entries
+                    </div>
+                    <ul class="pagination">
+                        <li class="pagination--item ">
+                            <a href="#" class="page--link btn-previous">Previous</a>
+                        </li>
+                        <li class="pagination--item ">
+                            <a href="#" class="page--link">1</a>
+                        </li>
+                        <li class="pagination--item ">
+                            <a href="#" class="page--link">2</a>
+                        </li>
+                        <li class="pagination--item ">
+                            <a href="#" class="page--link">3</a>
+                        </li>
+                        <li class="pagination--item ">
+                            <a href="#" class="page--link">4</a>
+                        </li>
+                        <li class="pagination--item ">
+                            <a href="#" class="page--link btn-next">Next</a>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div id="confirmdel" class="confirmdel active">
+        <div class="confirmdel__title">
+            <h1>Xóa cửa hàng ?</h1>
+            <div id="Cbtntime" class="confirmdel__title--time">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="confirmdel__ques">
+            <h3>Bạn có chắn chắn muốn xóa cửa hàng này?</h3>
+        </div>
+        <div class="confirmdel__btn">
+            <button id="Cbtndestroy" class="btn--del">Xóa Bỏ</button>
+            <button id="Cbtnclose" class="btn--close">Hủy</button>
+        </div>
+    </div>
+     <div id="bgblack" class="bg--black"></div>
+     <form id="cart-form-delete"  method="POST"></form>  
+</body>
+<script>
+    $(document).ready(function(){
+        
+    })
+     // comfirmdel
+const bg = document.getElementById("bgblack");
+const confirmdel = document.getElementById("confirmdel");
+const btndel = document.querySelectorAll(".Cbtndel");
+const btntime = document.getElementById("Cbtntime");
+const btnclose = document.getElementById("Cbtnclose");
+const btndestroy = document.getElementById("Cbtndestroy");
+const formdel = document.getElementById("cart-form-delete");
+
+
+btnclose.addEventListener("click", function() {
+    confirmdel.style.display = "none"
+    bg.style.display = "none"
+})
+btntime.addEventListener("click", function() {
+    confirmdel.style.display = "none"
+    bg.style.display = "none"
+})
+
+btndel.forEach(function(item, index) {
+    item.addEventListener("click", function() {
+        bg.style.display = "block"
+        confirmdel.style.display = "block"
+
+        btndestroy.addEventListener("click", function() {
+            formdel.action = "/admin/delete-shop/" + item.id + "?_method=DELETE"
+            formdel.submit();
+        })
+    })
+})
+const btnSearch = document.getElementById("btnSearch");
+    btnSearch.addEventListener("click",function(){
+        var val = document.getElementById("searchP").value;
+        // fetch
+        fetch('/admin/shop/search',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                search : val,
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            
+           if(data.length > 0){
+                    const top =`<table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        
+                        <th>Action</th>
+                    </tr>`;
+            const bot = `</table>
+                <div class="row">
+                    <div class="database_info">
+                        Showing 1 to 10 of ${data.length} entries
+                    </div>
+                    <ul class="pagination">
+                        <li class="pagination--item ">
+                            <a href="#" class="page--link btn-previous">Previous</a>
+                        </li>
+                        <li class="pagination--item ">
+                            <a href="#" class="page--link">1</a>
+                        </li>
+                        <li class="pagination--item ">
+                            <a href="#" class="page--link">2</a>
+                        </li>
+                        <li class="pagination--item ">
+                            <a href="#" class="page--link">3</a>
+                        </li>
+                        <li class="pagination--item ">
+                            <a href="#" class="page--link">4</a>
+                        </li>
+                        <li class="pagination--item ">
+                            <a href="#" class="page--link btn-next">Next</a>
+                        </li>
+                    </ul>
+                </div>`;
+                    const middle = data.map(function(item){
+                    return `<tr>
+                                <td>${item._id}</td>
+                                <td>${item.fullname}</td>
+                                <td>${item.phone_number}</td>
+                                <td>${item.email}</td>
+                                
+                                <td>
+                                    <a href="/admin/update-shop/${item._id}"><button class="btn-edit" ><i class="fas fa-edit"></i></button></a> 
+                                    <button id="${item._id}" class="btn-del Cbtndel" ><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr> `
+                    })
+                    const content = top.concat(middle,bot);
+                     console.log("if:" + content)
+                    document.querySelector(".listProduct__content--table").innerHTML = content;
+                }else{
+                    const top =`<table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        
+                        <th>Action</th>
+                    </tr>
+                    </table>`;
+            const bot = `
+                <div class="row">
+                    <div class="database_info">
+                        Showing 1 to 10 of ${data.length} entries
+                    </div>
+                    <ul class="pagination">
+                        <li class="pagination--item ">
+                            <a href="#" class="page--link btn-previous">Previous</a>
+                        </li>
+                        <li class="pagination--item ">
+                            <a href="#" class="page--link">1</a>
+                        </li>
+                        <li class="pagination--item ">
+                            <a href="#" class="page--link">2</a>
+                        </li>
+                        <li class="pagination--item ">
+                            <a href="#" class="page--link">3</a>
+                        </li>
+                        <li class="pagination--item ">
+                            <a href="#" class="page--link">4</a>
+                        </li>
+                        <li class="pagination--item ">
+                            <a href="#" class="page--link btn-next">Next</a>
+                        </li>
+                    </ul>
+                </div>`;
+                    const middle = `<div class="no_result">
+                                <h3>no result!!</h3>
+                            </div>`; 
+                    
+                    
+                    const content = top.concat(middle,bot);
+                    console.log("else:" + content)
+                    document.querySelector(".listProduct__content--table").innerHTML = content;
+                }
+            
+        })
+        .catch((error) => console.log('Error:', error));
+
+    })
+</script>
+</html>

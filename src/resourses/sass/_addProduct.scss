@@ -1,0 +1,60 @@
+.addProduct {
+    background-color: #fff;
+    &__heading {
+        background-color: #1cc88a;
+        color: #fff;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 1rem 0;
+    }
+    &__form {
+        width: 70%;
+        margin: 0 auto;
+        padding: 2rem 4rem;
+        .form__group {
+            margin: 3rem 0;
+            label {
+                font-size: 1.4rem;
+                text-transform: uppercase;
+                font-weight: bold;
+                color: #858796;
+                display: block;
+            }
+            input,
+            textarea {
+                font-size: 1.6rem;
+                padding: 10px;
+                width: 100%;
+                border: 1px solid black;
+            }
+            &--price {
+                display: inline;
+                input {
+                    width: 40%;
+                }
+            }
+            &--shop {
+                font-size: 1.6rem;
+                padding: 1rem 0;
+                display: inline-block;
+                width: 30%;
+                input {
+                    width: 50px;
+                    transform: scale(1.5);
+                }
+            }
+        }
+    }
+}
+
+.Update_image_render {
+    display: flex;
+    width: 100%;
+    justify-content: start;
+    align-items: center;
+    padding: 1rem;
+    img {
+        height: 100px;
+        width: 100px;
+    }
+}

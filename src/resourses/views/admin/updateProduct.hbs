@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="addProduct">
+        <div class="addProduct__heading">
+            <h1>Cập nhật món ăn</h1>
+        </div>
+        <div class="addProduct__form">
+            <form class="form__editProduct" action="/admin/update-product/{{product._id}}?_method=PUT" enctype="multipart/form-data" method="POST">
+                <div class="form__group">
+                    <label for="name">Tên món ăn</label>
+                    <input type="text" placeholder="Tên món ăn" name="name" id="name" value="{{product.name}}">
+                </div>
+                <div class="form__group">
+                    <label for="price">Giá bình thường</label>
+                    <input type="text" placeholder="Giá" name="price" id="price" value=" {{product.price}}">
+                </div>
+                <div class="form__group">
+                    <label>Khoảng Giá</label>
+                    <div class="form__group--price">
+                        <input type="text" placeholder="Từ" name="priceStart" id="priceStart" value=" {{product.priceStart}}">
+                        <input type="text" placeholder="Đến" name="priceEnd" id="priceEnd" value=" {{product.priceEnd}}">
+                    </div>
+                    
+                </div>
+                <div class="form__group">
+                    <label for="type">Loại</label>
+                    <input type="text" placeholder="Loại món ăn" name="type" id="type" value="{{product.type}}">
+                </div>
+                <div class="form__group">
+                    <label for="typedetail">Loại chi tiết</label>
+                    <input type="text" placeholder="nem, bánh canh..." name="typedetail" id="typedetail" value="{{product.typedetail}}">
+                </div>
+                <div class="form__group">
+                    <label for="type">session</label>
+                    <input type="text" placeholder="sáng, trưa, chiều ..." name="session" id="session" value="{{product.session}}">
+                </div>
+                <div class="form__group">
+                    <label for="description">Mô tả</label>
+                    <textarea type="text" placeholder="Mô tả món ăn" name="description" id="description" rows="4" cols="50" >{{product.description}}</textarea>
+                </div>
+               <div class="form__group">
+                    <label for="shopID">ID Cửa hàng</label>
+                    <input type="text" id="shop" placeholder="id shop" value="{{product.shopID}}" name="shopID" >
+                </div>
+
+                <div class="form__group">
+                    <label for="thumbnails">Hình ảnh</label>
+                    <div class="Update_image_render">
+                        {{#each product.thumbnails}}
+                        
+                            <img src="http://localhost:3000/open_image?image_name={{this}}" alt="img">
+                      
+                        {{/each}}
+                          </div>
+                        <input name="thumbnails" type="file" accept=".png,.jpg" multiple required>
+                </div>  
+               
+            </form>
+             <button  class="btn--primary btn-small btn-submit">SAVE</button>
+            {{!-- <button class="btn--secondary btn-small btn-reset">Reset</button> --}}
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function(){
+        $(".btn-submit").click(function(){
+            $(".form__editProduct").submit();
+        })
+    })
+</script>
+</html>

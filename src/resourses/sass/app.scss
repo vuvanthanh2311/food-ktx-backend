@@ -1,0 +1,28 @@
+@import"nav";
+@import"btn";
+@import"sidebar";
+@import"addProduct";
+@import"listProduct";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: "AdihausDIN", Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.wrapper {
+    display: flex;
+    &__sidebar {
+        position: relative;
+        width: 280px;
+    }
+    &__content {
+        width: 82%;
+    }
+}
